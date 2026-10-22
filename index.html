@@ -171,6 +171,14 @@
       display: flex; align-items: center; justify-content: space-between; gap: 12px;
     }
     #flat-stop-caption-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    /* In a tour the menu button and Prev/Next sit in the top left, and the control bar sits in the top right,
+    both floating over this bar. Keep the caption between them so its text is never printed underneath. */
+    body.is-tour #flat-stop-caption { padding-left: 224px; padding-right: 400px; }
+    @media (max-width: 700px) {
+      /* Narrow screens: drop the caption below the button row instead of squeezing it between them. */
+      body.is-tour #flat-stop-caption { padding: 52px 14px 10px; }
+      body.is-tour #flat-stop-zoom-hint { display: none; }
+    }
     #flat-stop-zoom-hint { flex: none; font-size: 11px; font-weight: 400; color: #9fb2cc; }
     /* Hidden by default -- shown (display:flex) only for a PDF with
     more than one page, see renderFlatPdf/updatePageNavUI. */
@@ -732,9 +740,9 @@
     .esri-pt { background: none; border: none; display: flex; align-items: center; justify-content: center; }
     .esri-label { background: none; border: none; box-shadow: none; padding: 0; font-weight: 600; font-size: 12px; }
     .esri-label::before { display: none; }
-    .leaflet-tooltip.stop-tooltip { background: #0e1b33; color: #ffffff; border: 1px solid #019fc4; border-radius: 4px;
-      padding: 4px 8px; font-size: 12px; font-weight: 600; box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
-    .leaflet-tooltip-top.stop-tooltip::before { border-top-color: #019fc4; }
+    .leaflet-tooltip.stop-tooltip { background: rgba(14, 27, 51, 0.82); color: #ffffff; border: none; border-radius: 3px;
+      padding: 2px 6px; font-size: 11px; font-weight: 600; line-height: 1.3; box-shadow: none; pointer-events: none; }
+    .leaflet-tooltip-top.stop-tooltip::before { display: none; }
     /* Local preview only: a fixed slot ahead of the icon, so a check mark never shifts the names. */
     body.hdg-local .tour-stop-link::before { content: ''; display: inline-block; flex: none; width: 16px; }
     body.hdg-local .tour-stop-link.hdg-done::before { content: '\2713'; color: #7CFC9A; font-weight: bold; text-align: center; }
@@ -806,7 +814,7 @@
 </head>
 <body>
 
-  <div id="build-timestamp">Built 2026-10-22 11:55:05</div>
+  <div id="build-timestamp">Built 2026-10-22 12:08:54</div>
 
   <div id="status-banner"></div>
 
@@ -2821,6 +2829,23 @@
       var opt = (tourSiteOptions || []).find(function (s) { return norm(s.site_id) === norm(sid); });
       return !!(opt && opt.platform === 'float');
     }
+    // The name shown for a stop inside a tour. Always the tour's own label for the stop (the same name as the
+    // sidebar), never the photo's file name: a config label that looks like an image name (DJI_..., IMG_...,
+    // or ending .jpg) is ignored. Falls back to the other candidates in order, then to an empty string.
+    function looksLikeImageName(x) {
+      var t = String(x == null ? '' : x).trim();
+      return /^(DJI|IMG|PXL|PANO)_/i.test(t) || /\.(jpe?g|png|tiff?|webp)$/i.test(t);
+    }
+    function tourStopLabel(sid, sidebarText, configLabel) {
+      var norm = function (x) { return String(x).trim().toLowerCase().replace(/[\s-]+/g, '_'); };
+      var opt = (tourSiteOptions || []).find(function (s) { return norm(s.site_id) === norm(sid); });
+      var candidates = [opt && opt.display_name, sidebarText, configLabel];
+      for (var i = 0; i < candidates.length; i++) {
+        var c = candidates[i] == null ? '' : String(candidates[i]).trim();
+        if (c && !looksLikeImageName(c)) return c;
+      }
+      return '';
+    }
     function isAerialSite(sid) {
       var norm = function (x) { return String(x).trim().toLowerCase().replace(/[\s-]+/g, '_'); };
       var opt = (tourSiteOptions || []).find(function (s) { return norm(s.site_id) === norm(sid); });
@@ -3758,11 +3783,12 @@
         pendingMapData.sites.forEach(s => {
           var isActive = s.site_id === activeTourSiteId;
           var m = L.marker([s.lat, s.lng], { icon: buildMarkerIcon(isActive, s.platform === 'aerial', !!s.overview, s.platform === 'float') });
-          m.bindPopup(escapeHtml(s.display_name || s.site_id));
-          // Stop name on hover (mouse only; touch screens use the tap popup).
+          // The stop name is a small label on hover, and on tap for touch screens. There is no click
+          // popup any more: it covered the map and had to be closed by hand after every stop.
           m.bindTooltip(escapeHtml(s.display_name || s.site_id), { direction: 'top', className: 'stop-tooltip', opacity: 1 });
           if (isActive) m.setZIndexOffset(1000);
           m.on('click', () => {
+            m.openTooltip();
             if (tourLoadStopFn) tourLoadStopFn(s.site_id);
           });
           if (useCluster) markerClusterGroup.addLayer(m); else m.addTo(siteMap);
@@ -4877,7 +4903,7 @@
       }
 
       function showFlatStop(sid, config, fallbackLabel) {
-        var label = config.label || fallbackLabel;
+        var label = tourStopLabel(sid, fallbackLabel, config.label);
         document.getElementById('flat-stop-caption-text').textContent = label;
         document.getElementById('label-left').innerText = label;
         document.title = tourNameForTitle + ' \u2014 ' + label;
@@ -5321,7 +5347,7 @@
           refreshHotspotList();
           setTimeout(() => { viewerL.updateSize(); }, 100);
 
-          var resolvedLabel = config.label_1 || fallbackLabel;
+          var resolvedLabel = tourStopLabel(sid, fallbackLabel, config.label_1);
           document.getElementById('label-left').innerText = resolvedLabel;
           document.title = tourNameForTitle + ' \u2014 ' + resolvedLabel;
           siteDefaultPinStyle = config.pin_style === 'label' ? 'label' : 'dot';
