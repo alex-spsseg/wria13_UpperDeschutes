@@ -1,0 +1,93 @@
+{
+  "mode": "single",
+  "format": "raw",
+  "yaw_1": 0.0,
+  "pitch_1": 0.0,
+  "yaw_2": 0.0,
+  "pitch_2": 0.0,
+  "lat": 46.79978851010101,
+  "lng": -122.43478554999847,
+  "label_1": "IMG_20260331_121203_00_586 (2026/03/31)",
+  "label_2": "",
+  "autorotate": false,
+  "hotspots_1": [
+    {
+      "yaw": 5.6552795150065425,
+      "pitch": 0.0,
+      "title": "Stop 40 \u00b7 17 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_121315_00_587",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 1.8461509662155189,
+      "pitch": 0.0,
+      "title": "Stop 38 \u00b7 49 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_121044_00_585",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 0.12929209021441457,
+      "pitch": 0.0,
+      "title": "Stop 41 \u00b7 55 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_121406_00_588",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 2.2034599744242387,
+      "pitch": 0.0,
+      "title": "Stop 37 \u00b7 64 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_120956_00_584",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 4.931642541630363,
+      "pitch": -1.3962634015954636,
+      "title": "Stop 101 \u00b7 9 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "dji_20260331112320_0301_d",
+      "link_icon": "aerial"
+    },
+    {
+      "yaw": 2.923884253047463,
+      "pitch": -0.5565433422779492,
+      "title": "Stop 102 \u00b7 147 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "dji_20260331112618_0379_d",
+      "link_icon": "aerial"
+    }
+  ],
+  "hotspots_2": [],
+  "levels_1": [],
+  "levels_2": [],
+  "pin_style": "dot",
+  "basemap_type": "xyz_tile",
+  "basemap_url": "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+  "mobile_1": 5000,
+  "mobile_2": 0,
+  "heading_offset": 270.0,
+  "overlays": [],
+  "alt_checked": true,
+  "alt": 214.8
+}

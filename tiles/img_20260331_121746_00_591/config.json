@@ -1,0 +1,82 @@
+{
+  "mode": "single",
+  "format": "raw",
+  "yaw_1": 0.0,
+  "pitch_1": 0.0,
+  "yaw_2": 0.0,
+  "pitch_2": 0.0,
+  "lat": 46.80051014999734,
+  "lng": -122.436097790007,
+  "label_1": "IMG_20260331_121746_00_591 (2026/03/31)",
+  "label_2": "",
+  "autorotate": false,
+  "hotspots_1": [
+    {
+      "yaw": 6.192338371365365,
+      "pitch": 0.0,
+      "title": "Stop 45 \u00b7 32 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_121847_00_592",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 1.3864720997379607,
+      "pitch": 0.0,
+      "title": "Stop 47 \u00b7 44 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_122037_00_594",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 2.998300446806358,
+      "pitch": 0.0,
+      "title": "Stop 43 \u00b7 49 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_121546_00_590",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 3.404356288874931,
+      "pitch": 0.0,
+      "title": "Stop 42 \u00b7 50 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_121459_00_589",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 3.007728982568569,
+      "pitch": -0.654212097743411,
+      "title": "Stop 101 \u00b7 132 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "dji_20260331112320_0301_d",
+      "link_icon": "aerial"
+    }
+  ],
+  "hotspots_2": [],
+  "levels_1": [],
+  "levels_2": [],
+  "pin_style": "dot",
+  "basemap_type": "xyz_tile",
+  "basemap_url": "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+  "mobile_1": 5000,
+  "mobile_2": 0,
+  "heading_offset": 320.0,
+  "overlays": [],
+  "alt_checked": true,
+  "alt": 204.3
+}

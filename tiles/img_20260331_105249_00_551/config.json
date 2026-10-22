@@ -1,0 +1,82 @@
+{
+  "mode": "single",
+  "format": "raw",
+  "yaw_1": 0.0,
+  "pitch_1": 0.0,
+  "yaw_2": 0.0,
+  "pitch_2": 0.0,
+  "lat": 46.798898810000054,
+  "lng": -122.42533615002594,
+  "label_1": "IMG_20260331_105249_00_551 (2026/03/31)",
+  "label_2": "",
+  "autorotate": false,
+  "hotspots_1": [
+    {
+      "yaw": 0.05657372504260562,
+      "pitch": 0.0,
+      "title": "Stop 6 \u00b7 42 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_105405_00_552",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 2.786644572696475,
+      "pitch": 0.0,
+      "title": "Stop 4 \u00b7 47 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_105142_00_550",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 0.5324748579253568,
+      "pitch": 0.0,
+      "title": "Stop 8 \u00b7 96 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_105603_00_554",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 0.4521703889244121,
+      "pitch": -1.0636218861104623,
+      "title": "Stop 104 \u00b7 45 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "dji_20260331113239_0019_d",
+      "link_icon": "aerial"
+    },
+    {
+      "yaw": 2.552909869496097,
+      "pitch": -0.6106263243032618,
+      "title": "Stop 103 \u00b7 117 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "dji_20260331113228_0014_d",
+      "link_icon": "aerial"
+    }
+  ],
+  "hotspots_2": [],
+  "levels_1": [],
+  "levels_2": [],
+  "pin_style": "dot",
+  "basemap_type": "xyz_tile",
+  "basemap_url": "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+  "mobile_1": 5000,
+  "mobile_2": 0,
+  "heading_offset": 240.0,
+  "overlays": [],
+  "alt_checked": true,
+  "alt": 223.2
+}

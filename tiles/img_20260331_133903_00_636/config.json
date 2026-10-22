@@ -1,0 +1,82 @@
+{
+  "mode": "single",
+  "format": "raw",
+  "yaw_1": 0.0,
+  "pitch_1": 0.0,
+  "yaw_2": 0.0,
+  "pitch_2": 0.0,
+  "lat": 46.798356,
+  "lng": -122.444676,
+  "label_1": "IMG_20260331_133903_00_636 (2026/03/31)",
+  "label_2": "",
+  "autorotate": false,
+  "hotspots_1": [
+    {
+      "yaw": 6.263711760073439,
+      "pitch": 0.0,
+      "title": "Stop 89 \u00b7 36 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_133950_00_637",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 3.498007772471031,
+      "pitch": 0.0,
+      "title": "Stop 87 \u00b7 38 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_133703_00_635",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 5.74583404967982,
+      "pitch": 0.0,
+      "title": "Stop 91 \u00b7 46 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_134201_00_639",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 4.078100919599547,
+      "pitch": 0.0,
+      "title": "Stop 86 \u00b7 57 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_133611_00_634",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 0.6184552039818052,
+      "pitch": -1.1973051603447018,
+      "title": "Stop 106 \u00b7 36 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "dji_20260331125519_0180_d",
+      "link_icon": "aerial"
+    }
+  ],
+  "hotspots_2": [],
+  "levels_1": [],
+  "levels_2": [],
+  "pin_style": "dot",
+  "basemap_type": "xyz_tile",
+  "basemap_url": "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+  "mobile_1": 5000,
+  "mobile_2": 0,
+  "heading_offset": 180.0,
+  "overlays": [],
+  "alt_checked": true,
+  "alt": 201.8
+}

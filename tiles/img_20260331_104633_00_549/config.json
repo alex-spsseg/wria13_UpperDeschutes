@@ -1,0 +1,71 @@
+{
+  "mode": "single",
+  "format": "raw",
+  "yaw_1": 0.0,
+  "pitch_1": 0.0,
+  "yaw_2": 0.0,
+  "pitch_2": 0.0,
+  "lat": 46.799472220000176,
+  "lng": -122.42475,
+  "label_1": "IMG_20260331_104633_00_549 (2026/03/31)",
+  "label_2": "",
+  "autorotate": false,
+  "hotspots_1": [
+    {
+      "yaw": 5.9870342208239835,
+      "pitch": 0.0,
+      "title": "Stop 4 \u00b7 31 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_105142_00_550",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 2.816312120257752,
+      "pitch": 0.0,
+      "title": "Stop 2 \u00b7 44 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_104458_00_548",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 2.528063383569934,
+      "pitch": -1.0763058840191368,
+      "title": "Stop 103 \u00b7 42 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "dji_20260331113228_0014_d",
+      "link_icon": "aerial"
+    },
+    {
+      "yaw": 0.14433780627807713,
+      "pitch": -0.6020976116904121,
+      "title": "Stop 104 \u00b7 112 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "dji_20260331113239_0019_d",
+      "link_icon": "aerial"
+    }
+  ],
+  "hotspots_2": [],
+  "levels_1": [],
+  "levels_2": [],
+  "pin_style": "dot",
+  "basemap_type": "xyz_tile",
+  "basemap_url": "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+  "mobile_1": 5000,
+  "mobile_2": 0,
+  "heading_offset": 225.0,
+  "overlays": [],
+  "alt_checked": true,
+  "alt": 227.7
+}

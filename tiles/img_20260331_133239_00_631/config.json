@@ -1,0 +1,82 @@
+{
+  "mode": "single",
+  "format": "raw",
+  "yaw_1": 0.0,
+  "pitch_1": 0.0,
+  "yaw_2": 0.0,
+  "pitch_2": 0.0,
+  "lat": 46.79926969996703,
+  "lng": -122.44256571999699,
+  "label_1": "IMG_20260331_133239_00_631 (2026/03/31)",
+  "label_2": "",
+  "autorotate": false,
+  "hotspots_1": [
+    {
+      "yaw": 3.629275890583454,
+      "pitch": 0.0,
+      "title": "Stop 65 \u00b7 32 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_125320_00_612",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 3.0137861323623225,
+      "pitch": 0.0,
+      "title": "Stop 82 \u00b7 53 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_133123_00_630",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 0.33107101725557003,
+      "pitch": 0.0,
+      "title": "Stop 84 \u00b7 57 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_133416_00_632",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 0.6191097712956601,
+      "pitch": 0.0,
+      "title": "Stop 85 \u00b7 98 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_133516_00_633",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 3.3515051607864588,
+      "pitch": -0.5229915920961572,
+      "title": "Stop 105 \u00b7 146 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "dji_20260331125236_0113_d",
+      "link_icon": "aerial"
+    }
+  ],
+  "hotspots_2": [],
+  "levels_1": [],
+  "levels_2": [],
+  "pin_style": "dot",
+  "basemap_type": "xyz_tile",
+  "basemap_url": "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+  "mobile_1": 5000,
+  "mobile_2": 0,
+  "heading_offset": 190.0,
+  "overlays": [],
+  "alt_checked": true,
+  "alt": 208.4
+}

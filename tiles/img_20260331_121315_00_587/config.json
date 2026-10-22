@@ -1,0 +1,82 @@
+{
+  "mode": "single",
+  "format": "raw",
+  "yaw_1": -0.8667329650471274,
+  "pitch_1": -0.2565443522602102,
+  "yaw_2": 0.0,
+  "pitch_2": 0.0,
+  "lat": 46.79969803006739,
+  "lng": -122.43496762999793,
+  "label_1": "IMG_20260331_121315_00_587 (2026/03/31)",
+  "label_2": "",
+  "autorotate": false,
+  "hotspots_1": [
+    {
+      "yaw": 3.211816245645433,
+      "pitch": 0.0,
+      "title": "Stop 39 \u00b7 17 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_121203_00_586",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 1.0942067091551833,
+      "pitch": 0.0,
+      "title": "Stop 41 \u00b7 45 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_121406_00_588",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 2.7132675594037337,
+      "pitch": 0.0,
+      "title": "Stop 38 \u00b7 63 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_121044_00_585",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 1.5601528964172422,
+      "pitch": 0.0,
+      "title": "Stop 43 \u00b7 76 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_121546_00_590",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 3.744789217431027,
+      "pitch": -1.3962634015954636,
+      "title": "Stop 101 \u00b7 12 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "dji_20260331112320_0301_d",
+      "link_icon": "aerial"
+    }
+  ],
+  "hotspots_2": [],
+  "levels_1": [],
+  "levels_2": [],
+  "pin_style": "dot",
+  "basemap_type": "xyz_tile",
+  "basemap_url": "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+  "mobile_1": 5000,
+  "mobile_2": 0,
+  "heading_offset": 230.0,
+  "overlays": [],
+  "alt_checked": true,
+  "alt": 204.5
+}

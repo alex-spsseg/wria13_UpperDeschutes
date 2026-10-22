@@ -1,0 +1,82 @@
+{
+  "mode": "single",
+  "format": "raw",
+  "yaw_1": 0.0,
+  "pitch_1": 0.0,
+  "yaw_2": 0.0,
+  "pitch_2": 0.0,
+  "lat": 46.800694440000136,
+  "lng": -122.4285,
+  "label_1": "IMG_20260331_112048_00_561 (2026/03/31)",
+  "label_2": "",
+  "autorotate": false,
+  "hotspots_1": [
+    {
+      "yaw": 3.7141313033250816,
+      "pitch": 0.0,
+      "title": "Stop 14 \u00b7 23 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_111945_00_560",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 6.118860232200742,
+      "pitch": 0.0,
+      "title": "Stop 16 \u00b7 30 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_112212_00_562",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 3.1963063482873344,
+      "pitch": 0.0,
+      "title": "Stop 13 \u00b7 43 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_111839_00_559",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 5.2580469239623975,
+      "pitch": 0.0,
+      "title": "Stop 17 \u00b7 62 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "img_20260331_112727_00_563",
+      "link_icon": "ground"
+    },
+    {
+      "yaw": 5.517284171433621,
+      "pitch": -0.5619282708251724,
+      "title": "Stop 100 \u00b7 149 m",
+      "text": "",
+      "link": "",
+      "category": "link",
+      "pin_style": "label_hover",
+      "target": "dji_20260331112227_0284_d",
+      "link_icon": "aerial"
+    }
+  ],
+  "hotspots_2": [],
+  "levels_1": [],
+  "levels_2": [],
+  "pin_style": "dot",
+  "basemap_type": "xyz_tile",
+  "basemap_url": "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+  "mobile_1": 5000,
+  "mobile_2": 0,
+  "heading_offset": 320.0,
+  "overlays": [],
+  "alt_checked": true,
+  "alt": 211.9
+}
