@@ -43,7 +43,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body, html { width: 100%; height: 100%; overflow: hidden; background: #0e1b33; font-family: sans-serif; }
 
-    #container { display: flex; width: 100vw; height: 100vh; position: relative; }
+    #container { display: flex; width: 100vw; height: 100vh; height: 100dvh; position: relative; }
 
     .pano-panel { flex: 1; height: 100%; position: relative; border-right: 2px solid #1b3f95; }
 
@@ -100,14 +100,14 @@
     #pano-right-wrapper.hidden { display: none; }
 
     #container.curtain-mode .pano-panel {
-      position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
+      position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; height: 100dvh;
     }
     #container.curtain-mode #pano-right-wrapper {
-      position: absolute; top: 0; right: 0; left: auto; width: 50vw; height: 100vh;
+      position: absolute; top: 0; right: 0; left: auto; width: 50vw; height: 100vh; height: 100dvh;
       overflow: hidden; z-index: 5; border-left: 3px solid #019fc4;
     }
     #container.curtain-mode #pano-right {
-      position: absolute; top: 0; right: 0; left: auto; width: 100vw; height: 100vh;
+      position: absolute; top: 0; right: 0; left: auto; width: 100vw; height: 100vh; height: 100dvh;
     }
 
     #curtain-slider {
@@ -794,6 +794,33 @@
       .pano-label { font-size: 12px; padding: 5px 10px; max-width: 70vw; }
       #label-right { top: 52px; }
     }
+    /* A phone held sideways is wider than 700px, so the narrow screen rules above do not apply, yet it is only
+    about 350px tall. The full row of buttons then runs into Prev and Next on the left. Phones in landscape get
+    the same single menu button as a narrow screen, with the list opening as two columns so it fits the short
+    height. Only touch screens in landscape match, so a short desktop window keeps the normal row. */
+    @media (orientation: landscape) and (max-height: 540px) and (pointer: coarse) {
+      #control-bar { position: absolute; top: 8px; right: 12px; }
+      #control-bar-toggle {
+        display: flex; align-items: center; justify-content: center;
+        width: 42px; height: 42px; padding: 0; font-size: 20px; line-height: 1;
+      }
+      #control-bar-buttons {
+        display: none; position: absolute; top: 48px; right: 0;
+        grid-template-columns: repeat(2, max-content); gap: 6px;
+        max-height: calc(100vh - 64px); overflow-y: auto;
+        background: rgba(14, 27, 51, 0.95); border: 1px solid #019fc4;
+        border-radius: 8px; padding: 8px; box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+      }
+      #control-bar-buttons.open { display: grid; }
+      .ctrl-btn { padding: 9px 12px; font-size: 13px; }
+      .tour-nav-btn { top: 8px; height: 42px; padding: 0 10px; font-size: 13px; }
+      #tour-sidebar-toggle { top: 8px; width: 42px; height: 42px; font-size: 20px; }
+      #prev-stop-btn { left: 60px; }
+      #next-stop-btn { left: 136px; }
+      #tour-sidebar { top: 58px; max-height: calc(100vh - 70px); }
+      #site-map-panel { width: 36vw; height: 44vh; min-height: 120px; max-height: 190px; }
+      .hotspot-pin { width: 34px; height: 34px; }
+    }
     /* A quiet note, lower left, while the sharp photo of a stop downloads behind the soft one. */
     #hd-pill {
       position: fixed; left: 14px; bottom: 14px;
@@ -814,7 +841,7 @@
 </head>
 <body>
 
-  <div id="build-timestamp">Built 2026-10-22 13:22:11</div>
+  <div id="build-timestamp">Built 2026-10-22 14:20:40</div>
 
   <div id="status-banner"></div>
 
@@ -1655,6 +1682,13 @@
       }
     });
     document.getElementById('fullscreen-btn').addEventListener('click', () => toggleFullscreen());
+    // iPhone Safari has no full screen mode for a web page, so the button would do nothing there. Hide it.
+    (function () {
+      var el = document.documentElement;
+      var canFullscreen = el.requestFullscreen || el.webkitRequestFullscreen || el.webkitRequestFullScreen ||
+                          el.mozRequestFullScreen || el.msRequestFullscreen;
+      if (!canFullscreen) document.getElementById('fullscreen-btn').style.display = 'none';
+    })();
     document.getElementById('reset-btn').addEventListener('click', () => resetViews());
 
     // -- help / info card ----------------------------------------------
