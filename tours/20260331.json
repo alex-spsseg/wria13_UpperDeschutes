@@ -765,6 +765,13 @@
       "platform": "aerial",
       "alt": 291.09,
       "rel_alt": 115.74
+    },
+    {
+      "site_id": "260219_upperdeschutesriverrestorationproject_100pctdesign_draft_upperdesc_lowerthurston",
+      "display_name": "100% Design Draft (2/19/26)",
+      "lat": null,
+      "lng": null,
+      "kind": "pdf"
     }
   ],
   "basemap_type": "xyz_tile",

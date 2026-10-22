@@ -8,4 +8,4 @@ Live site: [All tours](https://alex-spsseg.github.io/wria13_UpperDeschutes/tours
 
 ## Tours
 
-- [Site Visit (225cfs)](https://alex-spsseg.github.io/wria13_UpperDeschutes/index.html?tour=20260331) (visited 2026-03-31, 107 stops)
+- [Site Visit (225cfs)](https://alex-spsseg.github.io/wria13_UpperDeschutes/index.html?tour=20260331) (visited 2026-03-31, 108 stops)

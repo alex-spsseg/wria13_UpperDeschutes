@@ -841,7 +841,7 @@
 </head>
 <body>
 
-  <div id="build-timestamp">Built 2026-10-22 14:20:40</div>
+  <div id="build-timestamp">Built 2026-10-22 14:40:02</div>
 
   <div id="status-banner"></div>
 
@@ -5271,28 +5271,102 @@
           if (panZoomState.scale <= panZoomState.minScale * 1.001) { resetView(); return; }
           applyPanZoom(wrap);
         }, { passive: false });
+        // Touch: one finger pans, two fingers pinch to zoom (and pan with the midpoint), double tap zooms in or
+        // resets. All of it works through pointer events, so a mouse and a pen behave as before.
         var dragging = false, lastX = 0, lastY = 0;
+        var pointers = new Map();          // pointerId -> { x, y } for every finger or button down on the page
+        var pinchDist = 0, pinchMidX = 0, pinchMidY = 0;
+        var tapCandidate = false, tapDownX = 0, tapDownY = 0, lastTapTime = 0, lastTapX = 0, lastTapY = 0;
+        var ignoreDblClickUntil = 0;       // some phones also send a double click after a double tap
+        function clampScale(v) { return Math.min(panZoomState.minScale * 10, Math.max(panZoomState.minScale, v)); }
+        function zoomAbout(mx, my, next) {
+          next = clampScale(next);
+          panZoomState.tx = mx - (mx - panZoomState.tx) * (next / panZoomState.scale);
+          panZoomState.ty = my - (my - panZoomState.ty) * (next / panZoomState.scale);
+          panZoomState.scale = next;
+        }
+        function firstTwo() {
+          var it = pointers.values();
+          return [it.next().value, it.next().value];
+        }
         body.addEventListener('pointerdown', e => {
           if (!panZoomState) return;
-          dragging = true; lastX = e.clientX; lastY = e.clientY;
-          body.setPointerCapture(e.pointerId);
-          body.classList.add('dragging');
+          pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+          try { body.setPointerCapture(e.pointerId); } catch (err) {}
+          if (pointers.size === 1) {
+            dragging = true; lastX = e.clientX; lastY = e.clientY;
+            tapCandidate = true; tapDownX = e.clientX; tapDownY = e.clientY;
+            body.classList.add('dragging');
+          } else if (pointers.size === 2) {
+            dragging = false; tapCandidate = false;
+            var two = firstTwo();
+            pinchDist = Math.hypot(two[0].x - two[1].x, two[0].y - two[1].y) || 1;
+            pinchMidX = (two[0].x + two[1].x) / 2; pinchMidY = (two[0].y + two[1].y) / 2;
+          }
         });
         body.addEventListener('pointermove', e => {
-          if (!dragging || !panZoomState) return;
+          if (!panZoomState || !pointers.has(e.pointerId)) return;
+          pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+          if (pointers.size >= 2) {
+            var two = firstTwo();
+            var dist = Math.hypot(two[0].x - two[1].x, two[0].y - two[1].y) || 1;
+            var midX = (two[0].x + two[1].x) / 2, midY = (two[0].y + two[1].y) / 2;
+            var rect = body.getBoundingClientRect();
+            zoomAbout(pinchMidX - rect.left, pinchMidY - rect.top, panZoomState.scale * (dist / pinchDist));
+            panZoomState.tx += midX - pinchMidX;
+            panZoomState.ty += midY - pinchMidY;
+            pinchDist = dist; pinchMidX = midX; pinchMidY = midY;
+            if (panZoomState.scale <= panZoomState.minScale * 1.001) resetView(); else applyPanZoom(wrap);
+            return;
+          }
+          if (!dragging) return;
+          if (tapCandidate && Math.hypot(e.clientX - tapDownX, e.clientY - tapDownY) > 8) tapCandidate = false;
           panZoomState.tx += e.clientX - lastX;
           panZoomState.ty += e.clientY - lastY;
           lastX = e.clientX; lastY = e.clientY;
           applyPanZoom(wrap);
         });
-        ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => body.addEventListener(ev, () => {
-          dragging = false;
-          body.classList.remove('dragging');
-        }));
+        var endPointer = function (e) {
+          var wasTap = tapCandidate && e.type === 'pointerup' && e.pointerType !== 'mouse';
+          pointers.delete(e.pointerId);
+          if (pointers.size === 1) {
+            // One finger lifted after a pinch: carry on panning with the other without a jump.
+            var rest = pointers.values().next().value;
+            dragging = true; lastX = rest.x; lastY = rest.y; tapCandidate = false;
+          } else if (pointers.size === 0) {
+            dragging = false;
+            body.classList.remove('dragging');
+          }
+          if (wasTap && panZoomState) {
+            var now = Date.now();
+            if (now - lastTapTime < 350 && Math.hypot(e.clientX - lastTapX, e.clientY - lastTapY) < 40) {
+              // Second tap: zoom in around the tap, or go back to the whole page if already zoomed.
+              if (panZoomState.scale > panZoomState.minScale * 1.05) {
+                resetView();
+              } else {
+                var rect2 = body.getBoundingClientRect();
+                zoomAbout(e.clientX - rect2.left, e.clientY - rect2.top, panZoomState.minScale * 3);
+                applyPanZoom(wrap);
+              }
+              lastTapTime = 0;
+              ignoreDblClickUntil = Date.now() + 600;
+            } else {
+              lastTapTime = now; lastTapX = e.clientX; lastTapY = e.clientY;
+            }
+          }
+        };
+        ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(ev => body.addEventListener(ev, endPointer));
         body.addEventListener('dblclick', () => {
-          if (!panZoomState) return;
+          if (!panZoomState || Date.now() < ignoreDblClickUntil) return;
           resetView();
         });
+        // The hint in the caption bar names the gestures for the kind of screen this is.
+        try {
+          var zoomHint = document.getElementById('flat-stop-zoom-hint');
+          if (zoomHint && window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
+            zoomHint.textContent = 'Drag to pan \u00b7 pinch to zoom \u00b7 double tap to zoom in or reset';
+          }
+        } catch (err) {}
       }
 
       function loadStop(rawId) {
