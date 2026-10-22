@@ -814,7 +814,7 @@
 </head>
 <body>
 
-  <div id="build-timestamp">Built 2026-10-22 12:16:53</div>
+  <div id="build-timestamp">Built 2026-10-22 12:46:13</div>
 
   <div id="status-banner"></div>
 
@@ -3764,6 +3764,14 @@
       window.addEventListener('touchend', end);
     })();
 
+    // The inset map opens fitted to every stop, unless that fit would be zoomed out below MAP_FIT_MIN_ZOOM (the
+    // tour is spread over a long reach, so all you would see is a few cluster bubbles). Then it opens at
+    // MAP_START_ZOOM centred on the current stop instead. The Fit button always zooms out to everything.
+    // At 300 px wide, zoom 15 is roughly a kilometre across. Raise MAP_FIT_MIN_ZOOM to zoom in for more
+    // tours, lower it to keep the whole overview for more of them.
+    var MAP_FIT_MIN_ZOOM = 15;
+    var MAP_START_ZOOM = 17;
+
     function renderMapData() {
       ensureMapInitialized();
       if (!siteMap || !pendingMapData) return;
@@ -3779,7 +3787,8 @@
       } else if (pendingMapData.type === 'tour') {
         var bounds = [];
         var useCluster = typeof L.markerClusterGroup === 'function';
-        if (useCluster) markerClusterGroup = L.markerClusterGroup({ maxClusterRadius: 40 });
+        // Pins stop clustering once the map is zoomed in this far, so a stop's neighbours show as their own pins.
+        if (useCluster) markerClusterGroup = L.markerClusterGroup({ maxClusterRadius: 40, disableClusteringAtZoom: MAP_START_ZOOM });
         pendingMapData.sites.forEach(s => {
           var isActive = s.site_id === activeTourSiteId;
           var m = L.marker([s.lat, s.lng], { icon: buildMarkerIcon(isActive, s.platform === 'aerial', !!s.overview, s.platform === 'float') });
@@ -3797,8 +3806,21 @@
         });
         if (useCluster) markerClusterGroup.addTo(siteMap);
         if (bounds.length > 1) {
-          siteMap.fitBounds(bounds, { padding: [24, 24] });
-          lastMapFit = () => siteMap.fitBounds(bounds, { padding: [24, 24] });
+          var fitAll = () => siteMap.fitBounds(bounds, { padding: [24, 24] });
+          // How far the fit would zoom out depends on how spread out the stops are, not how many there are. If
+          // it would land below MAP_FIT_MIN_ZOOM, start close in on the current stop so its neighbours and the
+          // view cone are visible; the Fit button still zooms out to everything.
+          var startMarker = tourMarkersBySite[activeTourSiteId] || tourMarkersBySite[(pendingMapData.sites[0] || {}).site_id];
+          var fitZoom = null;
+          try {
+            siteMap.invalidateSize();
+            var mapSize = siteMap.getSize();
+            // A map that has no size yet (panel still hidden) cannot say; it is measured again when it opens.
+            if (mapSize.x > 50 && mapSize.y > 50) fitZoom = siteMap.getBoundsZoom(L.latLngBounds(bounds), false, L.point(48, 48));
+          } catch (e) {}
+          if (fitZoom !== null && fitZoom < MAP_FIT_MIN_ZOOM && startMarker) siteMap.setView(startMarker.getLatLng(), MAP_START_ZOOM);
+          else fitAll();
+          lastMapFit = fitAll;
         } else if (bounds.length === 1) {
           siteMap.setView(bounds[0], 15);
           lastMapFit = () => siteMap.setView(bounds[0], 15);
