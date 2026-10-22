@@ -13,7 +13,7 @@
   "hotspots_1": [
     {
       "yaw": 5.3841347074100225,
-      "pitch": 0.0,
+      "pitch": 0,
       "title": "Stop 94 \u00b7 11 m",
       "text": "",
       "link": "",
@@ -23,8 +23,8 @@
       "link_icon": "ground"
     },
     {
-      "yaw": 1.8755883299800093,
-      "pitch": 0.0,
+      "yaw": 2.001580533914405,
+      "pitch": -0.006195126426394637,
       "title": "Stop 96 \u00b7 13 m",
       "text": "",
       "link": "",
@@ -34,8 +34,8 @@
       "link_icon": "ground"
     },
     {
-      "yaw": 2.8580119173746055,
-      "pitch": 0.0,
+      "yaw": 3.038965247357469,
+      "pitch": 0.013090427419918171,
       "title": "Stop 97 \u00b7 20 m",
       "text": "",
       "link": "",
@@ -45,8 +45,8 @@
       "link_icon": "ground"
     },
     {
-      "yaw": 2.2167299766823714,
-      "pitch": 0.0,
+      "yaw": 2.462538865859072,
+      "pitch": 0.016789817248005434,
       "title": "Stop 98 \u00b7 40 m",
       "text": "",
       "link": "",
@@ -75,8 +75,9 @@
   "basemap_url": "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
   "mobile_1": 5000,
   "mobile_2": 0,
-  "heading_offset": 0.0,
+  "heading_offset": 341.3634903414111,
   "overlays": [],
   "alt_checked": true,
-  "alt": 200.3
+  "alt": 200.3,
+  "heading_confirmed": true
 }
